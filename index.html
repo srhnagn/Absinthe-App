@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absinthe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="drag-area"></div>
+    <div class="container">
+        <div class="header">
+            <h1 class="glow-text">Absinthe</h1>
+            <p>Sihirli bir şekilde videoyu sese dönüştür</p>
+        </div>
+        
+        <div class="input-group">
+            <input type="text" id="url-input" placeholder="YouTube veya video linki yapıştırın..." autocomplete="off">
+        </div>
+
+        <button id="convert-btn">Dönüştür</button>
+
+        <div class="progress-container" id="progress-container" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p id="progress-text">0%</p>
+        </div>
+
+        <p id="status-message"></p>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "name": "absinthe",
+  "version": "1.0.0",
+  "description": "Absinthe MP3 Converter App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --mac dmg --arm64"
+  },
+  "author": "serhanagan",
+  "license": "MIT",
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.serhanagan.absinthe",
+    "productName": "Absinthe",
+    "asar": false,
+    "mac": {
+      "target": {
+        "target": "dmg",
+        "arch": [
+          "arm64"
+        ]
+      },
+      "category": "public.app-category.music"
+    }
+  }
+}

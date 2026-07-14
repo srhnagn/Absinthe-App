@@ -1,0 +1,144 @@
+:root {
+    --bg-color: #0a0f0a;
+    --absinthe-green: #39ff14;
+    --absinthe-dark: #123512;
+    --text-color: #e0f0e0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.drag-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    -webkit-app-region: drag;
+    z-index: 1000;
+}
+
+.container {
+    width: 80%;
+    max-width: 450px;
+    text-align: center;
+    z-index: 10;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.glow-text {
+    font-size: 3.5rem;
+    color: var(--absinthe-green);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5), 0 0 20px rgba(57, 255, 20, 0.3);
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    font-weight: 800;
+}
+
+.header p {
+    color: #88aa88;
+    font-size: 0.95rem;
+}
+
+.input-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--absinthe-dark);
+    background-color: rgba(18, 53, 18, 0.3);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+input[type="text"]:focus {
+    border-color: var(--absinthe-green);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.2), inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+button {
+    background-color: transparent;
+    color: var(--absinthe-green);
+    border: 2px solid var(--absinthe-green);
+    padding: 12px 45px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--absinthe-green);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
+}
+
+button:disabled {
+    border-color: #335533;
+    color: #335533;
+    cursor: not-allowed;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.progress-container {
+    margin-top: 30px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--absinthe-dark);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--absinthe-green);
+    box-shadow: 0 0 10px var(--absinthe-green);
+    transition: width 0.3s ease;
+}
+
+#progress-text {
+    font-size: 0.85rem;
+    color: var(--absinthe-green);
+    font-weight: bold;
+}
+
+#status-message {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    min-height: 24px;
+}
