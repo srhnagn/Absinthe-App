@@ -37,11 +37,6 @@ app.on('window-all-closed', () => {
 
 ipcMain.handle('download-mp3', async (event, url) => {
   const downloadsPath = app.getPath('downloads');
-  const absintheDir = path.join(downloadsPath, 'Absinthe');
-  
-  if (!fs.existsSync(absintheDir)) {
-    fs.mkdirSync(absintheDir, { recursive: true });
-  }
 
   return new Promise((resolve, reject) => {
     try {
@@ -52,7 +47,7 @@ ipcMain.handle('download-mp3', async (event, url) => {
         '-x',
         '--audio-format', 'mp3',
         '--ffmpeg-location', ffmpegStatic,
-        '-o', path.join(absintheDir, '%(title)s.%(ext)s'),
+        '-o', path.join(downloadsPath, '%(title)s.%(ext)s'),
         '--no-playlist'
       ];
 
@@ -73,7 +68,7 @@ ipcMain.handle('download-mp3', async (event, url) => {
 
       ytDlpProcess.on('close', (code) => {
         if (code === 0) {
-            shell.openPath(absintheDir);
+            shell.openPath(downloadsPath);
             resolve({ success: true, message: 'Dönüştürme tamamlandı!' });
         } else {
             resolve({ success: false, message: `Hata oluştu (Kod: ${code}). Geçersiz link olabilir.` });
