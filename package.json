@@ -28,7 +28,8 @@
           "arm64"
         ]
       },
-      "category": "public.app-category.music"
+      "category": "public.app-category.music",
+      "icon": "build/icon.png"
     }
   }
 }
