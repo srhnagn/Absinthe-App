@@ -16,7 +16,8 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
-      contextIsolation: true
+      contextIsolation: true,
+      sandbox: true
     }
   });
 
@@ -35,21 +36,33 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-ipcMain.handle('download-mp3', async (event, url) => {
+ipcMain.handle('download-media', async (event, { url, format }) => {
   const downloadsPath = app.getPath('downloads');
 
   return new Promise((resolve, reject) => {
     try {
       const ytDlpPath = path.join(__dirname, 'bin', 'yt-dlp_macos');
       
-      const args = [
-        url,
-        '-x',
-        '--audio-format', 'mp3',
-        '--ffmpeg-location', ffmpegStatic,
-        '-o', path.join(downloadsPath, '%(title)s.%(ext)s'),
-        '--no-playlist'
-      ];
+      let args = [];
+      if (format === 'mp3') {
+          args = [
+            url,
+            '-x',
+            '--audio-format', 'mp3',
+            '--ffmpeg-location', ffmpegStatic,
+            '-o', path.join(downloadsPath, '%(title)s.%(ext)s'),
+            '--no-playlist'
+          ];
+      } else {
+          args = [
+            url,
+            '-f', 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+            '--merge-output-format', 'mp4',
+            '--ffmpeg-location', ffmpegStatic,
+            '-o', path.join(downloadsPath, '%(title)s.%(ext)s'),
+            '--no-playlist'
+          ];
+      }
 
       const ytDlpProcess = spawn(ytDlpPath, args);
 

@@ -18,6 +18,17 @@
             <input type="text" id="url-input" placeholder="YouTube veya video linki yapıştırın..." autocomplete="off">
         </div>
 
+        <div class="format-toggle">
+            <label class="radio-label">
+                <input type="radio" name="format" value="mp3" checked>
+                <span class="custom-radio">🎵 MP3 (Ses)</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="format" value="mp4">
+                <span class="custom-radio">🎬 MP4 (Video)</span>
+            </label>
+        </div>
+
         <button id="convert-btn">Dönüştür</button>
 
         <div class="progress-container" id="progress-container" style="display: none;">

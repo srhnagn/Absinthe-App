@@ -13,6 +13,8 @@ convertBtn.addEventListener('click', async () => {
         return;
     }
 
+    const format = document.querySelector('input[name="format"]:checked').value;
+
     // Reset UI
     convertBtn.disabled = true;
     urlInput.disabled = true;
@@ -22,7 +24,7 @@ convertBtn.addEventListener('click', async () => {
     statusMessage.textContent = 'Sihir başlıyor... İndiriliyor.';
     statusMessage.style.color = 'var(--text-color)';
 
-    const result = await window.electronAPI.downloadMp3(url);
+    const result = await window.electronAPI.downloadMedia({ url, format });
 
     if (result.success) {
         statusMessage.textContent = result.message;
