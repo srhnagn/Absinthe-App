@@ -58,6 +58,9 @@ ipcMain.handle('download-media', async (event, { url, format }) => {
             url,
             '-f', 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
             '--merge-output-format', 'mp4',
+            '--write-subs',
+            '--embed-subs',
+            '--sub-langs', 'all,-live_chat',
             '--ffmpeg-location', ffmpegStatic,
             '-o', path.join(downloadsPath, '%(title)s.%(ext)s'),
             '--no-playlist'
