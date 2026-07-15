@@ -4,6 +4,18 @@ const progressContainer = document.getElementById('progress-container');
 const progressFill = document.getElementById('progress-fill');
 const progressText = document.getElementById('progress-text');
 const statusMessage = document.getElementById('status-message');
+const subtitle = document.getElementById('subtitle');
+const formatRadios = document.querySelectorAll('input[name="format"]');
+
+formatRadios.forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        if (e.target.value === 'mp3') {
+            subtitle.textContent = 'Sihirli bir şekilde videoyu sese dönüştür';
+        } else {
+            subtitle.textContent = 'Sihirli bir şekilde videoları en yüksek kalitede indir';
+        }
+    });
+});
 
 convertBtn.addEventListener('click', async () => {
     const url = urlInput.value.trim();
